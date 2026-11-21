@@ -56,7 +56,7 @@
 
 ## Phase 4: Comparison Algorithms
 - [x] 4.1 Add `APSPResult` in `models.py`.
-- [ ] 4.2 `dijkstra` with negative-edge check first, `heapq` with lazy deletion, reusable core loop.
+- [x] 4.2 `dijkstra` with negative-edge check first, `heapq` with lazy deletion, reusable core loop.
 - [ ] 4.3 `floyd_warshall` with diagonal negative cycle detection, $-\infty$ pairs, next-hop paths.
 - [ ] 4.4 `johnson` with super-source Bellman-Ford, reweighting $w'$, Dijkstra per source.
 - [ ] 4.5 Registry in `algorithms/__init__.py`.
