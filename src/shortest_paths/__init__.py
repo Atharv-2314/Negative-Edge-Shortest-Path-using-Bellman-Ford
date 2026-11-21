@@ -15,6 +15,7 @@ from shortest_paths.models import (
 from shortest_paths.graph import Graph
 from shortest_paths.algorithms.bellman_ford import bellman_ford
 from shortest_paths.algorithms.dijkstra import dijkstra
+from shortest_paths.algorithms.floyd_warshall import floyd_warshall
 
 __all__ = [
     "Status",
@@ -28,4 +29,5 @@ __all__ = [
     "Graph",
     "bellman_ford",
     "dijkstra",
+    "floyd_warshall",
 ]
