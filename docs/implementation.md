@@ -25,7 +25,7 @@
 
 ## Phase 1: Minimal Bellman-Ford
 - [x] 1.1 pyproject/gitignore verified.
-- [ ] 1.2 `core.bellman_ford` implementation.
+- [x] 1.2 `core.bellman_ford` implementation.
 - [ ] 1.3 `tests/test_core.py` (covering G₁, G₂, G₃, single vertex, empty edges).
 - [ ] 1.4 `scripts/run_demo.py` hard-coding G₁ and G₂.
 - [ ] **Phase 1 Gate**: G₁ gives `0, 2, 5, 5, 7, inf`; G₂ flags reachable negative cycle; G₃ flags none; single-vertex and no-edge pass.
