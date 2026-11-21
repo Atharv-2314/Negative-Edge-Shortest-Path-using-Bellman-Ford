@@ -101,8 +101,8 @@
 
 ## Phase 8: Final Audit and Demonstration
 - [x] 8.1 Full test suite run, both demo runs, and benchmark verification.
-- [ ] 8.2 Audit code against report claims.
-- [ ] 8.3 Distance `None` audit for non-FINITE vertices everywhere.
+- [x] 8.2 Audit code against report claims.
+- [x] 8.3 Distance `None` audit for non-FINITE vertices everywhere.
 - [ ] 8.4 Demonstration checklist documented.
 - [ ] 8.5 Unfinished/optional items list.
 - [ ] **Phase 8 Gate**: All tests pass with real output; report and code agree; demonstration checklist verified.
