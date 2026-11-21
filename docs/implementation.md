@@ -44,7 +44,7 @@
 ---
 
 ## Phase 3: Modular Repository Architecture
-- [ ] 3.1 Baseline test run recorded.
+- [x] 3.1 Baseline test run recorded.
 - [ ] 3.2 Move code to `graph.py`, `models.py`, `validation.py`.
 - [ ] 3.3 Move `bellman_ford` to `algorithms/bellman_ford.py` and re-export public API.
 - [ ] 3.4 Split tests into `tests/unit/` + add `conftest.py` and JSON fixtures.
