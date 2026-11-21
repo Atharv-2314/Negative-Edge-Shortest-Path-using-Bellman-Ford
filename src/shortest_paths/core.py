@@ -1,10 +1,121 @@
-"""Minimal Bellman-Ford single-source shortest paths solver.
+"""Bellman-Ford single-source shortest paths solver with result model.
 
-This module provides a straightforward implementation of the Bellman-Ford
-algorithm operating on integer-indexed vertices and integer-weighted edges.
+This module provides the Bellman-Ford algorithm together with the data
+model that describes its results: Status, VertexResult, SSSPResult, and
+the three public exception types.
 """
 
+from __future__ import annotations
+
 import math
+from dataclasses import dataclass
+from enum import Enum, auto
+from fractions import Fraction
+from typing import Any, Optional
+
+
+# ---------------------------------------------------------------------------
+# Weight type
+# ---------------------------------------------------------------------------
+Weight = int | Fraction
+
+
+# ---------------------------------------------------------------------------
+# Status enum
+# ---------------------------------------------------------------------------
+class Status(Enum):
+    """Reachability / cycle status of a single vertex result."""
+
+    FINITE = auto()
+    UNREACHABLE = auto()
+    NEG_INFINITE = auto()
+
+
+# ---------------------------------------------------------------------------
+# Result dataclasses
+# ---------------------------------------------------------------------------
+@dataclass(frozen=True)
+class VertexResult:
+    """Result for a single vertex in an SSSP computation.
+
+    Invariant
+    ---------
+    * ``distance`` and ``path`` are ``None`` unless ``status`` is ``FINITE``.
+    * When ``status`` is ``FINITE``, ``distance`` is an exact ``int`` or
+      ``Fraction`` and ``path`` is a non-empty list of vertex labels.
+    """
+
+    status: Status
+    distance: Optional[Weight]
+    path: Optional[list[Any]]
+
+    def __post_init__(self) -> None:
+        if self.status is not Status.FINITE:
+            if self.distance is not None:
+                raise ValueError(
+                    "distance must be None for non-FINITE vertices"
+                )
+            if self.path is not None:
+                raise ValueError("path must be None for non-FINITE vertices")
+
+
+@dataclass(frozen=True)
+class SSSPResult:
+    """Full result of a single-source shortest-paths computation.
+
+    Fields
+    ------
+    algorithm
+        Name of the algorithm that produced this result.
+    source
+        Label of the source vertex.
+    vertices
+        Mapping from vertex label to :class:`VertexResult`.
+    negative_cycle_reachable
+        ``True`` when a negative-weight cycle reachable from *source* was
+        detected.
+    negative_cycle
+        A list of vertex labels forming the witness cycle (closed walk with
+        negative total weight), or ``None`` if none was detected.
+    passes
+        Number of relaxation passes performed (excluding the detection pass).
+    relaxations
+        Total number of successful edge relaxations across all passes.
+    """
+
+    algorithm: str
+    source: Any
+    vertices: dict[Any, VertexResult]
+    negative_cycle_reachable: bool
+    negative_cycle: Optional[list[Any]]
+    passes: int
+    relaxations: int
+
+
+# ---------------------------------------------------------------------------
+# Exceptions
+# ---------------------------------------------------------------------------
+class GraphValidationError(ValueError):
+    """Raised when the input graph or arguments fail validation."""
+
+
+class NegativeWeightError(ValueError):
+    """Raised when an algorithm that requires non-negative weights receives a
+    negative-weight edge."""
+
+
+class NegativeCycleError(ValueError):
+    """Raised when an algorithm that cannot handle negative cycles detects one.
+
+    Attributes
+    ----------
+    cycle
+        Witness cycle as a list of vertex labels (closed walk).
+    """
+
+    def __init__(self, cycle: list[Any]) -> None:
+        self.cycle = cycle
+        super().__init__(f"Negative-weight cycle detected: {cycle}")
 
 
 def bellman_ford(
