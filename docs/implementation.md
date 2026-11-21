@@ -71,7 +71,7 @@
 - [x] 5.2 Example JSON files (`negative_edges.json`, `reachable_cycle.json`, `unreachable_cycle.json`).
 - [x] 5.3 `cli.py` and `__main__.py` with `sssp` and `apsp` subcommands, table and `--json` output.
 - [x] 5.4 Exit codes (0 success, 1 invalid input, 2 precondition violated, 3 negative cycle).
-- [ ] 5.5 CLI integration tests T14/T17.
+- [x] 5.5 CLI integration tests T14/T17.
 - [ ] 5.6 `README.md` Quick start section.
 - [ ] 5.7 Update `scripts/run_demo.py` to use CLI code path.
 - [ ] **Phase 5 Gate**: T14 and T17 pass; README quick-start works.
