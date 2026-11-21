@@ -14,17 +14,17 @@
 ---
 
 ## Phase 0: Setup and Checklist
-- [ ] 0.1 Inspect: list all files, check `python --version` (>= 3.10), and run `git status`.
-- [ ] 0.2 Skeleton: initialize git repo, directory layout, `.gitignore`, `pyproject.toml`, and empty `src/shortest_paths/__init__.py`.
-- [ ] 0.3 Venv + install: create virtual environment, run `pip install -e ".[dev]"`, verify import and run pytest smoke test.
-- [ ] 0.4 Checklist: create `docs/implementation.md`.
-- [ ] 0.5 Initial commit: commit skeleton and checklist.
-- [ ] **Phase 0 Gate**: `pip install -e ".[dev]"` works, `python -m pytest -q` runs, checklist exists, and initial commit exists.
+- [x] 0.1 Inspect: list all files, check `python --version` (>= 3.10), and run `git status`.
+- [x] 0.2 Skeleton: initialize git repo, directory layout, `.gitignore`, `pyproject.toml`, and empty `src/shortest_paths/__init__.py`.
+- [x] 0.3 Venv + install: create virtual environment, run `pip install -e ".[dev]"`, verify import and run pytest smoke test.
+- [x] 0.4 Checklist: create `docs/implementation.md`.
+- [x] 0.5 Initial commit: commit skeleton and checklist.
+- [x] **Phase 0 Gate**: `pip install -e ".[dev]"` works, `python -m pytest -q` runs, checklist exists, and initial commit exists.
 
 ---
 
 ## Phase 1: Minimal Bellman-Ford
-- [ ] 1.1 pyproject/gitignore verified.
+- [x] 1.1 pyproject/gitignore verified.
 - [ ] 1.2 `core.bellman_ford` implementation.
 - [ ] 1.3 `tests/test_core.py` (covering G₁, G₂, G₃, single vertex, empty edges).
 - [ ] 1.4 `scripts/run_demo.py` hard-coding G₁ and G₂.

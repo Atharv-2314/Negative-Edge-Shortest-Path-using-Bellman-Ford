@@ -24,7 +24,7 @@
 ---
 
 ## Phase 1: Minimal Bellman-Ford
-- [ ] 1.1 pyproject/gitignore verified.
+- [x] 1.1 pyproject/gitignore verified.
 - [ ] 1.2 `core.bellman_ford` implementation.
 - [ ] 1.3 `tests/test_core.py` (covering G₁, G₂, G₃, single vertex, empty edges).
 - [ ] 1.4 `scripts/run_demo.py` hard-coding G₁ and G₂.
