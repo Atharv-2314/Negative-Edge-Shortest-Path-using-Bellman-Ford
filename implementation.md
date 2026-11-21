@@ -103,6 +103,51 @@
 - [x] 8.1 Full test suite run, both demo runs, and benchmark verification.
 - [x] 8.2 Audit code against report claims.
 - [x] 8.3 Distance `None` audit for non-FINITE vertices everywhere.
-- [ ] 8.4 Demonstration checklist documented.
-- [ ] 8.5 Unfinished/optional items list.
-- [ ] **Phase 8 Gate**: All tests pass with real output; report and code agree; demonstration checklist verified.
+- [x] 8.4 Demonstration checklist documented.
+- [x] 8.5 Unfinished/optional items list.
+- [x] **Phase 8 Gate**: All tests pass with real output; report and code agree; demonstration checklist verified.
+
+---
+
+## Demonstration Checklist
+1. **$G_1$ with Bellman-Ford**: Distances `0, 2, 5, 5, 7`; path to 4 is `0 -> 2 -> 1 -> 3 -> 4`; vertex 5 `UNREACHABLE` (`distance=None`).
+   ```bash
+   python -m shortest_paths sssp examples/graphs/negative_edges.json --source 0
+   ```
+2. **$G_1$ with Dijkstra**: Refuses immediately with `NegativeWeightError` (exit code 2). Prevents erroneous greedy values (`[0, 4, 5, 7, 9]`) caused by early settlement of vertex 1 before negative relaxation through vertex 2.
+   ```bash
+   python -m shortest_paths sssp examples/graphs/negative_edges.json --source 0 --algorithm dijkstra
+   ```
+3. **$G_2$ with Bellman-Ford**: Vertices 1–4 detected as `NEG_INFINITE` (`distance=None`); witness closed walk `3 -> 2 -> 1 -> 3` with total negative weight -6.
+   ```bash
+   python -m shortest_paths sssp examples/graphs/reachable_cycle.json --source 0
+   ```
+4. **$G_3$ with Bellman-Ford vs Floyd-Warshall**:
+   - Bellman-Ford from source 0 reports no reachable cycle (vertices 5 and 6 are `UNREACHABLE`).
+   - Floyd-Warshall and Johnson detect cycle vertices `{5, 6}` globally.
+   ```bash
+   python -m shortest_paths sssp examples/graphs/unreachable_cycle.json --source 0
+   python -m shortest_paths apsp examples/graphs/unreachable_cycle.json --algorithm floyd-warshall
+   ```
+5. **APSP with Johnson on $G_1$**: Produces identical distance table to Floyd-Warshall with potentials $h = (0, -3, 0, 0, 0, 0)$.
+   ```bash
+   python -m shortest_paths apsp examples/graphs/negative_edges.json --algorithm johnson
+   ```
+6. **Live Test Suite Execution**: Run all 24 unit and cross-check tests.
+   ```bash
+   python -m pytest -q
+   ```
+7. **Empirical Benchmarks**:
+   - Benchmark data in `results/benchmark_*.csv`.
+   - Log-log execution curves in `results/figures/sssp_runtime_measured.png` and `results/figures/apsp_runtime_measured.png`.
+   - *Note*: Benchmark curves represent empirical hardware measurements on one host machine, not a mathematical asymptotic proof.
+
+---
+
+## Unfinished & Optional Items Audit
+- **Phase 6 Benchmarks & Plotting**: Completed (both `scripts/benchmark.py` and `scripts/plot_results.py` are implemented and verified).
+- **Optional Extensions / Gaps**:
+  - Exact arbitrary-precision weights (`int` and `Fraction`) fully supported; inexact IEEE 754 float weights intentionally rejected unless `--allow-float` is specified to protect against relaxation comparison drift.
+  - SSSP cycle detection is local to the source by design; global cycle detection is handled via APSP (Floyd-Warshall and Johnson).
+  - No pending bugs or failing tests.
+
