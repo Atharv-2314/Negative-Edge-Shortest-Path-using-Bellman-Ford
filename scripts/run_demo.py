@@ -1,6 +1,6 @@
 """Demo script running Bellman-Ford on hard-coded graphs G1 and G2."""
 
-from shortest_paths.core import bellman_ford, Graph
+from shortest_paths import bellman_ford, Graph
 
 
 def main() -> None:

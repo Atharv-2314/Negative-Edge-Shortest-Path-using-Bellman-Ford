@@ -55,6 +55,22 @@ class SSSPResult:
     relaxations: int
 
 
+@dataclass(frozen=True)
+class APSPResult:
+    """Full result of an all-pairs shortest paths calculation.
+
+    pairs: mapping of (source, target) -> VertexResult
+    has_negative_cycle: True if any negative-weight cycle is detected
+    negative_cycle_vertices: set/list of vertex labels involved in negative cycles
+    """
+
+    algorithm: str
+    pairs: dict[tuple[Any, Any], VertexResult]
+    has_negative_cycle: bool
+    negative_cycle_vertices: set[Any]
+
+
+
 class GraphValidationError(ValueError):
     """Raised when the input graph structure or arguments fail validation."""
 

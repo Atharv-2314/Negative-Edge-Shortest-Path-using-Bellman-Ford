@@ -48,14 +48,14 @@
 - [x] 3.2 Move code to `graph.py`, `models.py`, `validation.py`.
 - [x] 3.3 Move `bellman_ford` to `algorithms/bellman_ford.py` and re-export public API.
 - [x] 3.4 Split tests into `tests/unit/` + add `conftest.py` and JSON fixtures.
-- [ ] 3.5 Delete `core.py` and `tests/test_core.py`.
-- [ ] 3.6 Behaviour-unchanged check and demo run.
-- [ ] **Phase 3 Gate**: Identical test count and assertions; `from shortest_paths import bellman_ford` works.
+- [x] 3.5 Delete `core.py` and `tests/test_core.py`.
+- [x] 3.6 Behaviour-unchanged check and demo run.
+- [x] **Phase 3 Gate**: Identical test count and assertions; `from shortest_paths import bellman_ford` works.
 
 ---
 
 ## Phase 4: Comparison Algorithms
-- [ ] 4.1 Add `APSPResult` in `models.py`.
+- [x] 4.1 Add `APSPResult` in `models.py`.
 - [ ] 4.2 `dijkstra` with negative-edge check first, `heapq` with lazy deletion, reusable core loop.
 - [ ] 4.3 `floyd_warshall` with diagonal negative cycle detection, $-\infty$ pairs, next-hop paths.
 - [ ] 4.4 `johnson` with super-source Bellman-Ford, reweighting $w'$, Dijkstra per source.
