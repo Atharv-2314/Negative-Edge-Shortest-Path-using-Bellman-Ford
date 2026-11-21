@@ -225,65 +225,104 @@ class Graph:
 
 
 def bellman_ford(
-    n: int,
-    edges: list[tuple[int, int, int]],
-    source: int,
-) -> tuple[list, list, bool]:
-    """Run the Bellman-Ford algorithm on a directed, integer-weighted graph.
+    graph: Graph,
+    source: Any,
+) -> SSSPResult:
+    """Run Bellman-Ford on a :class:`Graph`, returning an :class:`SSSPResult`.
 
-    Parameters
-    ----------
-    n : int
-        Number of vertices (labelled 0 … n-1).
-    edges : list[tuple[int, int, int]]
-        Directed edges as (u, v, w) triples with integer weights.
-    source : int
-        Source vertex index.
-
-    Returns
-    -------
-    dist : list
-        Shortest distances from *source*. ``math.inf`` for unreachable vertices.
-    pred : list
-        Predecessor list (``None`` where undefined).
-    has_reachable_negative_cycle : bool
-        ``True`` if at least one edge can still be relaxed after *n-1* passes,
-        indicating a negative-weight cycle reachable from *source*.
+    The n-th pass is a *real* relaxation pass: every still-relaxable edge is
+    relaxed and the updated vertices are collected as the seed set *S*.  A BFS
+    from *S* over out-edges then marks every reachable vertex as
+    ``NEG_INFINITE`` (with ``distance = None`` and ``path = None``).
 
     Invariant
     ---------
     After pass *i* (1-indexed), ``dist[v]`` is the weight of the shortest path
     from *source* to *v* using at most *i* edges, for every vertex *v*.
     """
+    from collections import deque
+
     inf = math.inf
+
+    src_idx = graph.validate_source(source)
+    n = graph.n
+    edges = graph.index_edges
 
     dist: list = [inf] * n
     pred: list = [None] * n
-    dist[source] = 0
+    dist[src_idx] = 0
+
+    total_relaxations = 0
+    passes = 0
 
     # --- n-1 relaxation passes ---
     for _ in range(n - 1):
         changed = False
+        passes += 1
         for u, v, w in edges:
             if dist[u] == inf:
-                # Tail unreachable – skip to avoid inf + w arithmetic.
                 continue
             new_dist = dist[u] + w
             if new_dist < dist[v]:
                 dist[v] = new_dist
                 pred[v] = u
                 changed = True
+                total_relaxations += 1
         if not changed:
-            # Early termination: no distance improved in this pass.
             break
 
-    # --- Detection pass (the n-th pass) ---
-    has_reachable_negative_cycle = False
+    # --- n-th pass: real relaxation + collect seed set S ---
+    seed: set[int] = set()
+    passes += 1
     for u, v, w in edges:
         if dist[u] == inf:
             continue
-        if dist[u] + w < dist[v]:
-            has_reachable_negative_cycle = True
-            break
+        new_dist = dist[u] + w
+        if new_dist < dist[v]:
+            dist[v] = new_dist
+            pred[v] = u
+            seed.add(v)
+            total_relaxations += 1
 
-    return dist, pred, has_reachable_negative_cycle
+    # --- BFS from S to mark all NEG_INFINITE vertices ---
+    adj: list[list[int]] = [[] for _ in range(n)]
+    for u, v, _w in edges:
+        adj[u].append(v)
+
+    neg_inf_set: set[int] = set()
+    queue: deque[int] = deque(seed)
+    neg_inf_set.update(seed)
+    while queue:
+        u = queue.popleft()
+        for v in adj[u]:
+            if v not in neg_inf_set:
+                neg_inf_set.add(v)
+                queue.append(v)
+
+    # --- Build SSSPResult ---
+    vertices_result: dict[Any, VertexResult] = {}
+    for idx in range(n):
+        label = graph.label(idx)
+        if idx in neg_inf_set:
+            vertices_result[label] = VertexResult(
+                status=Status.NEG_INFINITE, distance=None, path=None,
+            )
+        elif dist[idx] == inf:
+            vertices_result[label] = VertexResult(
+                status=Status.UNREACHABLE, distance=None, path=None,
+            )
+        else:
+            # Path reconstruction deferred to M2.5
+            vertices_result[label] = VertexResult(
+                status=Status.FINITE, distance=dist[idx], path=None,
+            )
+
+    return SSSPResult(
+        algorithm="bellman-ford",
+        source=source,
+        vertices=vertices_result,
+        negative_cycle_reachable=len(neg_inf_set) > 0,
+        negative_cycle=None,  # Witness extraction deferred to M2.4
+        passes=passes,
+        relaxations=total_relaxations,
+    )
