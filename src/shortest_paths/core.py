@@ -273,7 +273,6 @@ def bellman_ford(
 
     # --- n-th pass: real relaxation + collect seed set S ---
     seed: set[int] = set()
-    passes += 1
     for u, v, w in edges:
         if dist[u] == inf:
             continue
@@ -334,9 +333,15 @@ def bellman_ford(
                 status=Status.UNREACHABLE, distance=None, path=None,
             )
         else:
-            # Path reconstruction deferred to M2.5
+            # Reconstruct path from pred for FINITE vertices
+            path_rev = [idx]
+            curr = pred[idx]
+            while curr is not None:
+                path_rev.append(curr)
+                curr = pred[curr]
+            path_labels = [graph.label(i) for i in reversed(path_rev)]
             vertices_result[label] = VertexResult(
-                status=Status.FINITE, distance=dist[idx], path=None,
+                status=Status.FINITE, distance=dist[idx], path=path_labels,
             )
 
     return SSSPResult(

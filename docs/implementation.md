@@ -37,9 +37,9 @@
 - [x] 2.2 Graph representation and input validation.
 - [x] 2.3 n-th pass relaxation and $-\infty$ propagation via BFS to `NEG_INFINITE`.
 - [x] 2.4 Witness cycle extraction.
-- [ ] 2.5 Path reconstruction for FINITE only; passes and relaxations counters.
-- [ ] 2.6 Tests T2, T5, T7, T9–T14 pass.
-- [ ] **Phase 2 Gate**: Tests T2, T5, T7, T9–T14 pass; every `NEG_INFINITE` vertex has `distance is None` and `path is None`; witness is a real closed walk with negative total weight.
+- [x] 2.5 Path reconstruction for FINITE only; passes and relaxations counters.
+- [x] 2.6 Tests T2, T5, T7, T9–T14 pass.
+- [x] **Phase 2 Gate**: Tests T2, T5, T7, T9–T14 pass; every `NEG_INFINITE` vertex has `distance is None` and `path is None`; witness is a real closed walk with negative total weight.
 
 ---
 
