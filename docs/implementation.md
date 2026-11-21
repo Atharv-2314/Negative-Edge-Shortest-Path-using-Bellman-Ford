@@ -70,7 +70,7 @@
 - [x] 5.1 `io.load_graph` parser with exact type validation.
 - [x] 5.2 Example JSON files (`negative_edges.json`, `reachable_cycle.json`, `unreachable_cycle.json`).
 - [x] 5.3 `cli.py` and `__main__.py` with `sssp` and `apsp` subcommands, table and `--json` output.
-- [ ] 5.4 Exit codes (0 success, 1 invalid input, 2 precondition violated, 3 negative cycle).
+- [x] 5.4 Exit codes (0 success, 1 invalid input, 2 precondition violated, 3 negative cycle).
 - [ ] 5.5 CLI integration tests T14/T17.
 - [ ] 5.6 `README.md` Quick start section.
 - [ ] 5.7 Update `scripts/run_demo.py` to use CLI code path.
