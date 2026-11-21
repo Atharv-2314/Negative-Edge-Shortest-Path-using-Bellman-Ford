@@ -79,7 +79,7 @@
 ---
 
 ## Phase 6: Benchmarking (Optional)
-- [ ] 6.1 Seeded graph generators (sparse, dense; families A and B).
+- [x] 6.1 Seeded graph generators (sparse, dense; families A and B).
 - [ ] 6.2 SSSP benchmark grid (BF vs Dijkstra on A; BF only on B).
 - [ ] 6.3 APSP benchmark grid (Floyd-Warshall vs Johnson on A and B).
 - [ ] 6.4 CSV writer + CLI flags (`--quick`, `--sizes`, `--seed`).
