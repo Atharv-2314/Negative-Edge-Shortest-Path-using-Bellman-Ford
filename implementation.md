@@ -93,14 +93,14 @@
 - [x] 7.1 Full `README.md`.
 - [x] 7.2 `docs/architecture.md`.
 - [x] 7.3 `docs/algorithms.md`.
-- [ ] 7.4 GitHub Actions workflow (`.github/workflows/tests.yml`).
-- [ ] 7.5 Clean-clone verification and check for untracked artifacts.
-- [ ] **Phase 7 Gate**: Clean-clone steps succeed as written; nothing generated is tracked.
+- [x] 7.4 GitHub Actions workflow (`.github/workflows/tests.yml`).
+- [x] 7.5 Clean-clone verification and check for untracked artifacts.
+- [x] **Phase 7 Gate**: Clean-clone steps succeed as written; nothing generated is tracked.
 
 ---
 
 ## Phase 8: Final Audit and Demonstration
-- [ ] 8.1 Full test suite run, both demo runs, and benchmark verification.
+- [x] 8.1 Full test suite run, both demo runs, and benchmark verification.
 - [ ] 8.2 Audit code against report claims.
 - [ ] 8.3 Distance `None` audit for non-FINITE vertices everywhere.
 - [ ] 8.4 Demonstration checklist documented.
