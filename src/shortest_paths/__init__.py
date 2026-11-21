@@ -11,4 +11,5 @@ from shortest_paths.core import (  # noqa: F401
     NegativeWeightError,
     NegativeCycleError,
     Weight,
+    Graph,
 )

@@ -34,7 +34,7 @@
 
 ## Phase 2: Result Model and Edge Cases
 - [x] 2.1 Status / VertexResult / SSSPResult / exceptions (`GraphValidationError`, `NegativeWeightError`, `NegativeCycleError`).
-- [ ] 2.2 Graph representation and input validation.
+- [x] 2.2 Graph representation and input validation.
 - [ ] 2.3 n-th pass relaxation and $-\infty$ propagation via BFS to `NEG_INFINITE`.
 - [ ] 2.4 Witness cycle extraction.
 - [ ] 2.5 Path reconstruction for FINITE only; passes and relaxations counters.
