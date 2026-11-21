@@ -67,7 +67,7 @@
 ---
 
 ## Phase 5: Input Files and CLI
-- [ ] 5.1 `io.load_graph` parser with exact type validation.
+- [x] 5.1 `io.load_graph` parser with exact type validation.
 - [ ] 5.2 Example JSON files (`negative_edges.json`, `reachable_cycle.json`, `unreachable_cycle.json`).
 - [ ] 5.3 `cli.py` and `__main__.py` with `sssp` and `apsp` subcommands, table and `--json` output.
 - [ ] 5.4 Exit codes (0 success, 1 invalid input, 2 precondition violated, 3 negative cycle).

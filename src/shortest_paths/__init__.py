@@ -21,6 +21,8 @@ from shortest_paths.algorithms import (
     ALGORITHMS,
 )
 
+from shortest_paths.io import load_graph
+
 __all__ = [
     "Status",
     "VertexResult",
@@ -31,6 +33,7 @@ __all__ = [
     "NegativeCycleError",
     "Weight",
     "Graph",
+    "load_graph",
     "bellman_ford",
     "dijkstra",
     "floyd_warshall",
