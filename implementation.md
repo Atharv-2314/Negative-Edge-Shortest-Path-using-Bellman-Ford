@@ -45,9 +45,9 @@
 
 ## Phase 3: Modular Repository Architecture
 - [x] 3.1 Baseline test run recorded.
-- [ ] 3.2 Move code to `graph.py`, `models.py`, `validation.py`.
-- [ ] 3.3 Move `bellman_ford` to `algorithms/bellman_ford.py` and re-export public API.
-- [ ] 3.4 Split tests into `tests/unit/` + add `conftest.py` and JSON fixtures.
+- [x] 3.2 Move code to `graph.py`, `models.py`, `validation.py`.
+- [x] 3.3 Move `bellman_ford` to `algorithms/bellman_ford.py` and re-export public API.
+- [x] 3.4 Split tests into `tests/unit/` + add `conftest.py` and JSON fixtures.
 - [ ] 3.5 Delete `core.py` and `tests/test_core.py`.
 - [ ] 3.6 Behaviour-unchanged check and demo run.
 - [ ] **Phase 3 Gate**: Identical test count and assertions; `from shortest_paths import bellman_ford` works.
