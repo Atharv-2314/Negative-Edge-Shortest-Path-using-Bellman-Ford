@@ -18,8 +18,8 @@
 - [x] 0.2 Skeleton: initialize git repo, directory layout, `.gitignore`, `pyproject.toml`, and empty `src/shortest_paths/__init__.py`.
 - [x] 0.3 Venv + install: create virtual environment, run `pip install -e ".[dev]"`, verify import and run pytest smoke test.
 - [x] 0.4 Checklist: create `docs/implementation.md`.
-- [ ] 0.5 Initial commit: commit skeleton and checklist.
-- [ ] **Phase 0 Gate**: `pip install -e ".[dev]"` works, `python -m pytest -q` runs, checklist exists, and initial commit exists.
+- [x] 0.5 Initial commit: commit skeleton and checklist.
+- [x] **Phase 0 Gate**: `pip install -e ".[dev]"` works, `python -m pytest -q` runs, checklist exists, and initial commit exists.
 
 ---
 
