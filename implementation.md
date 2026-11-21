@@ -90,9 +90,9 @@
 ---
 
 ## Phase 7: Documentation and CI
-- [ ] 7.1 Full `README.md`.
-- [ ] 7.2 `docs/architecture.md`.
-- [ ] 7.3 `docs/algorithms.md`.
+- [x] 7.1 Full `README.md`.
+- [x] 7.2 `docs/architecture.md`.
+- [x] 7.3 `docs/algorithms.md`.
 - [ ] 7.4 GitHub Actions workflow (`.github/workflows/tests.yml`).
 - [ ] 7.5 Clean-clone verification and check for untracked artifacts.
 - [ ] **Phase 7 Gate**: Clean-clone steps succeed as written; nothing generated is tracked.
