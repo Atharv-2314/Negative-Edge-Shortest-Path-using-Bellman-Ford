@@ -59,7 +59,7 @@
 - [x] 4.2 `dijkstra` with negative-edge check first, `heapq` with lazy deletion, reusable core loop.
 - [x] 4.3 `floyd_warshall` with diagonal negative cycle detection, $-\infty$ pairs, next-hop paths.
 - [x] 4.4 `johnson` with super-source Bellman-Ford, reweighting $w'$, Dijkstra per source.
-- [ ] 4.5 Registry in `algorithms/__init__.py`.
+- [x] 4.5 Registry in `algorithms/__init__.py`.
 - [ ] 4.6 Unit tests for comparison algorithms (T1, T3, T4, T6, T8).
 - [ ] 4.7 Cross-check tests T15/T16 with seeded random graphs.
 - [ ] **Phase 4 Gate**: T1, T3, T4, T6, T8, T15, T16 pass; each algorithm has its own test file.
