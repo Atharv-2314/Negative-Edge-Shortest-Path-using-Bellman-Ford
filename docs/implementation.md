@@ -81,11 +81,11 @@
 ## Phase 6: Benchmarking (Optional)
 - [x] 6.1 Seeded graph generators (sparse, dense; families A and B).
 - [x] 6.2 SSSP benchmark grid (BF vs Dijkstra on A; BF only on B).
-- [ ] 6.3 APSP benchmark grid (Floyd-Warshall vs Johnson on A and B).
-- [ ] 6.4 CSV writer + CLI flags (`--quick`, `--sizes`, `--seed`).
-- [ ] 6.5 Determinism check.
-- [ ] 6.6 Plots generation (optional).
-- [ ] **Phase 6 Gate**: Two runs with same seed give same relaxation counts; no algorithm timed on invalid preconditions.
+- [x] 6.3 APSP benchmark grid (Floyd-Warshall vs Johnson on A and B).
+- [x] 6.4 CSV writer + CLI flags (`--quick`, `--sizes`, `--seed`).
+- [x] 6.5 Determinism check.
+- [x] 6.6 Plots generation (optional).
+- [x] **Phase 6 Gate**: Two runs with same seed give same relaxation counts; no algorithm timed on invalid preconditions.
 
 ---
 
