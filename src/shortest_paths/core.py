@@ -299,6 +299,28 @@ def bellman_ford(
                 neg_inf_set.add(v)
                 queue.append(v)
 
+    # --- Witness cycle extraction ---
+    negative_cycle: Optional[list[Any]] = None
+    if seed:
+        # Pick any vertex x in S (seed of relaxation in n-th pass)
+        x = next(iter(seed))
+        # Step pred n times to guarantee entering a cycle
+        for _ in range(n):
+            if pred[x] is not None:
+                x = pred[x]
+
+        # Now walk pred from x until x repeats to extract the cycle
+        cycle_rev = [x]
+        curr = pred[x]
+        while curr is not None and curr != x:
+            cycle_rev.append(curr)
+            curr = pred[curr]
+        # Reverse to get forward order, then repeat first vertex at the end to close
+        cycle_forward = list(reversed(cycle_rev))
+        cycle_forward.append(cycle_forward[0])
+        # Convert indices to graph labels
+        negative_cycle = [graph.label(idx) for idx in cycle_forward]
+
     # --- Build SSSPResult ---
     vertices_result: dict[Any, VertexResult] = {}
     for idx in range(n):
@@ -322,7 +344,7 @@ def bellman_ford(
         source=source,
         vertices=vertices_result,
         negative_cycle_reachable=len(neg_inf_set) > 0,
-        negative_cycle=None,  # Witness extraction deferred to M2.4
+        negative_cycle=negative_cycle,
         passes=passes,
         relaxations=total_relaxations,
     )
